@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@layouts/*": ["./shared/layouts/*"],
+      "@components/*": ["./shared/components/*"],
+      "@services/*": ["./shared/services/*"],
+      "@utils/*": ["./shared/utils/*"],
+      "@interfaces/*": ["./shared/types/interfaces/*"],
+      "@models/*": ["./shared/types/models/*"],
+      "@enums/*": ["./shared/types/enums/*"],
+      "@slices/*": ["./shared/stores/slices/*"],
+      "@selectors/*": ["./shared/stores/selectors/*"],
+      "@rootStore": ["./app/root-store"]
+    }
+  }
+}

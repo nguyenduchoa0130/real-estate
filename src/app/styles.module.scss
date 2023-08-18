@@ -1,0 +1,13 @@
+$header-height: 64px;
+
+.layout-header {
+  padding: 0;
+  background-color: unset;
+  height: fit-content;
+  background-color: #fff;
+}
+
+.layout-main-content {
+  height: calc(100vh - $header-height);
+  background-color: #fff;
+}
