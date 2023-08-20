@@ -1,5 +1,5 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { useDebounce } from '@components/hooks/useDebouceTime';
+import { useDebounce } from '@hooks/useDebouceTime';
 import { Input, Table } from 'antd';
 import { ChangeEvent, FC, memo, useMemo, useState } from 'react';
 
@@ -56,7 +56,14 @@ const DynamicTable: FC<DynamicTableProps> = ({
 
   return (
     <>
-      {isShowSearch && <Input placeholder='Search' size='large' prefix={<SearchOutlined />} onChange={handleSearchChange} />}
+      {isShowSearch && (
+        <Input
+          placeholder='Search'
+          size='large'
+          prefix={<SearchOutlined />}
+          onChange={handleSearchChange}
+        />
+      )}
       <div className='py-2'>
         <Table
           columns={displayColumns}

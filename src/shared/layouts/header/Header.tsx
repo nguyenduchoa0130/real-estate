@@ -1,36 +1,54 @@
-import { BankOutlined, DollarOutlined } from '@ant-design/icons';
-import { Button, Divider, Menu, MenuProps, Space } from 'antd';
-import { memo } from 'react';
-import { NavLink } from 'react-router-dom';
+import { CalendarOutlined, DollarOutlined, HomeOutlined } from '@ant-design/icons';
+import { Button, Menu, MenuProps } from 'antd';
+import { memo, useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const menuItems: MenuProps['items'] = [
   {
-    label: <NavLink to='/for-sales'>For sales</NavLink>,
-    key: 'for-sales',
+    label: <NavLink to='/'>Home</NavLink>,
+    key: '/',
+    icon: <HomeOutlined />,
+  },
+  {
+    label: <NavLink to='/for-sales'>House for sales</NavLink>,
+    key: '/for-sales',
     icon: <DollarOutlined />,
   },
   {
-    label: <NavLink to='/for-rent'>For rent</NavLink>,
-    key: 'for-rent',
-    icon: <BankOutlined />,
+    label: <NavLink to='/for-rent'>House for Rent</NavLink>,
+    key: '/for-rent',
+    icon: <CalendarOutlined />,
   },
 ];
 
 const Header = () => {
+  const location = useLocation();
+  const [currentPage, setCurrentPage] = useState<string>(null);
+
+  useEffect(() => {
+    setCurrentPage(location.pathname);
+  }, [location.pathname]);
+
   return (
     <>
       <div className={styles.header}>
         <nav className={styles['header-nav']}>
           <NavLink to='/'>
-            <img src="/assets/svg/logo.svg" alt="Logo" />
+            <img src='/assets/svg/logo.svg' alt='Logo' />
           </NavLink>
-          <Menu items={menuItems} mode='horizontal' className={styles['header-menu']} />
+          <Menu
+            items={menuItems}
+            mode='horizontal'
+            className={styles['header-menu']}
+            selectedKeys={[currentPage]}
+          />
         </nav>
-        <Space split={<Divider type='vertical' />}>
-          <Button className={styles['header-btn']}>Login</Button>
-          <Button className={styles['header-btn']}>Register</Button>
-        </Space>
+        <NavLink to='/login-or-register'>
+          <Button size='large' type='dashed'>
+            Login or Register
+          </Button>
+        </NavLink>
       </div>
     </>
   );

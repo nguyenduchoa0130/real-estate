@@ -1,2 +1,2 @@
-import { default as AdminPage } from './Admin';
-export default AdminPage;
+import Admin from './Admin';
+export default Admin;
