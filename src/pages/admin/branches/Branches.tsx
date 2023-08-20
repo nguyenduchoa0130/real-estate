@@ -2,7 +2,7 @@ import React from 'react';
 
 const Branches = () => {
   return (
-    <div>Branches</div>
+    <>Branches</>
   );
 };
 

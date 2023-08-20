@@ -11,7 +11,8 @@
       "@enums/*": ["./shared/types/enums/*"],
       "@slices/*": ["./shared/stores/slices/*"],
       "@selectors/*": ["./shared/stores/selectors/*"],
-      "@rootStore": ["./app/root-store"]
+      "@rootStore": ["./app/root-store"],
+      "@hooks/*": ["./shared/hooks/*"]
     }
   }
 }

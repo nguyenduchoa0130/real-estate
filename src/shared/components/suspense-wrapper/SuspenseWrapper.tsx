@@ -1,6 +1,6 @@
 import { FC, ReactElement, Suspense } from 'react';
 
-type SuspenseWrapperProps = {
+interface SuspenseWrapperProps {
   element: ReactElement;
 };
 
