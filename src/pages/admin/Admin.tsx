@@ -1,5 +1,6 @@
 import {
   BranchesOutlined,
+  CompassOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
@@ -36,6 +37,12 @@ const menuItems: MenuItem[] = [
     activeKey: 'branches',
     icon: <BranchesOutlined />,
   },
+  {
+    path: 'addresses',
+    label: 'Addresses',
+    activeKey: 'addresses',
+    icon: <CompassOutlined />,
+  },
 ];
 
 const Admin = () => {
@@ -60,7 +67,7 @@ const Admin = () => {
             <div className='pt-3 h-100'>
               <div className='flex ai-center jc-center border-right pb-2'>
                 <Button
-                  type='primary'
+                  type={!isCollapsed ? 'primary' : 'default'}
                   danger={!isCollapsed}
                   onClick={() => setIsCollapsed(!isCollapsed)}>
                   {isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

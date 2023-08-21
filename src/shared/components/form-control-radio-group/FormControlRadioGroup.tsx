@@ -1,28 +1,25 @@
 import { Option } from '@interfaces/option.interface';
-import { Form, Select } from 'antd';
+import { Form, Radio } from 'antd';
 import { FC, memo } from 'react';
 import { Controller } from 'react-hook-form';
 
-interface FormControlDropdownProps {
+interface FormControlRadioGroupProps {
   error: any;
   rules?: any;
   control: any;
   name: string;
   label?: string;
   placeholder?: string;
-  isShowSearch?: boolean;
   options: Option<string>[];
 }
 
-const FormControlDropdown: FC<FormControlDropdownProps> = ({
+const FormControlRadioGroup: FC<FormControlRadioGroupProps> = ({
   name,
-  rules,
+  label,
+  error,
   control,
+  rules,
   options,
-  error = null,
-  isShowSearch,
-  label = 'Form Control Label',
-  placeholder = 'Dropdown placeholder',
 }) => {
   return (
     <>
@@ -32,12 +29,13 @@ const FormControlDropdown: FC<FormControlDropdownProps> = ({
           control={control}
           rules={rules}
           render={({ field }) => (
-            <Select
-              {...field}
-              placeholder={placeholder}
-              options={options}
-              showSearch={isShowSearch}
-            />
+            <Radio.Group {...field}>
+              {options.map((opt, idx) => (
+                <Radio key={`${name}-option-${idx}`} value={opt.value}>
+                  {opt.label}
+                </Radio>
+              ))}
+            </Radio.Group>
           )}
         />
       </Form.Item>
@@ -45,4 +43,4 @@ const FormControlDropdown: FC<FormControlDropdownProps> = ({
   );
 };
 
-export default memo(FormControlDropdown);
+export default memo(FormControlRadioGroup);

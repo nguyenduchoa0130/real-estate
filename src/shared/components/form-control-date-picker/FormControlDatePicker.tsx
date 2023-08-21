@@ -1,44 +1,43 @@
-import { Form, Input } from 'antd';
+import { DatePicker, Form } from 'antd';
 import { FC, memo } from 'react';
 import { Controller } from 'react-hook-form';
 
-interface FormControlInputProps {
+interface FormControlDatePickerProps {
   error: any;
   rules?: any;
   control: any;
   name: string;
   label?: string;
-  isPassword?: boolean;
   placeholder?: string;
 }
 
-const FormControlInput: FC<FormControlInputProps> = ({
+const FormControlDatePicker: FC<FormControlDatePickerProps> = ({
   name,
   rules,
   control,
   error = null,
-  placeholder = '',
-  isPassword = false,
   label = 'Form Control Label',
+  placeholder = 'Calendar placeholder',
 }) => {
   return (
     <>
       <Form.Item label={label} validateStatus={error ? 'error' : ''} help={error && error.message}>
         <Controller
           name={name}
-          rules={rules}
           control={control}
-          render={({ field }) =>
-            isPassword ? (
-              <Input.Password placeholder={placeholder} {...field} />
-            ) : (
-              <Input placeholder={placeholder} {...field} />
-            )
-          }
+          rules={rules}
+          render={({ field }) => (
+            <DatePicker
+              {...field}
+              placeholder={placeholder}
+              format='DD-MM-YYYY'
+              className='w-100'
+            />
+          )}
         />
       </Form.Item>
     </>
   );
 };
 
-export default memo(FormControlInput);
+export default memo(FormControlDatePicker);

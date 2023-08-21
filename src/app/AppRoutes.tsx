@@ -8,6 +8,7 @@ const LazyAdmin = lazy(() => import('../pages/admin'));
 const LazyUsers = lazy(() => import('../pages/admin/users'));
 const LazyBranches = lazy(() => import('../pages/admin/branches'));
 const LazyDashboard = lazy(() => import('../pages/admin/dashboard'));
+const LazyAddresses = lazy(() => import('../pages/admin/addresses'));
 // House For Sales
 const LazyHouseForSales = lazy(() => import('../pages/house-for-sales'));
 // House For Rent
@@ -33,6 +34,10 @@ const AppRoutes = () => {
       path: '/admin',
       element: <SuspenseWrapper element={<LazyAdmin />} />,
       children: [
+        {
+          path: 'addresses',
+          element: <SuspenseWrapper element={<LazyAddresses />} />,
+        },
         {
           path: 'users',
           element: <SuspenseWrapper element={<LazyUsers />} />,

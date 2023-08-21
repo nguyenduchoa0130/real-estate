@@ -12,19 +12,17 @@ interface TableColumn {
 interface DynamicTableProps {
   cols: TableColumn[];
   dataSource: any[];
-
   isShowSearch?: boolean;
   searchBy?: string[];
-
   pageSize?: number;
 }
 
 const DynamicTable: FC<DynamicTableProps> = ({
   cols = [],
+  pageSize = 10,
+  searchBy = [],
   dataSource = [],
   isShowSearch = false,
-  searchBy = [],
-  pageSize = 10,
 }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const debouncedSearchValue = useDebounce(searchValue);
