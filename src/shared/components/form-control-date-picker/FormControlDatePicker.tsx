@@ -1,5 +1,5 @@
 import { DatePicker, Form } from 'antd';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 
 interface FormControlDatePickerProps {
@@ -40,4 +40,4 @@ const FormControlDatePicker: FC<FormControlDatePickerProps> = ({
   );
 };
 
-export default memo(FormControlDatePicker);
+export default FormControlDatePicker;

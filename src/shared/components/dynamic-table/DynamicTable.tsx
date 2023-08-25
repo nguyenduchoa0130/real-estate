@@ -1,16 +1,10 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { useDebounce } from '@hooks/useDebouceTime';
 import { Input, Table } from 'antd';
-import { ChangeEvent, FC, memo, useMemo, useState } from 'react';
-
-interface TableColumn {
-  key: string;
-  title: string;
-  dataIndex: string;
-}
+import { ChangeEvent, FC, useMemo, useState } from 'react';
 
 interface DynamicTableProps {
-  cols: TableColumn[];
+  cols: any;
   dataSource: any[];
   isShowSearch?: boolean;
   searchBy?: string[];
@@ -19,7 +13,7 @@ interface DynamicTableProps {
 
 const DynamicTable: FC<DynamicTableProps> = ({
   cols = [],
-  pageSize = 10,
+  pageSize = 9,
   searchBy = [],
   dataSource = [],
   isShowSearch = false,
@@ -30,11 +24,6 @@ const DynamicTable: FC<DynamicTableProps> = ({
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(e.target.value);
   };
-
-  // Construct column configs
-  const displayColumns = useMemo(() => {
-    return cols;
-  }, []);
 
   // Construct database
   const displayDataSource = useMemo(() => {
@@ -50,7 +39,7 @@ const DynamicTable: FC<DynamicTableProps> = ({
     });
 
     return filteredDataSource;
-  }, [debouncedSearchValue]);
+  }, [debouncedSearchValue, dataSource]);
 
   return (
     <>
@@ -64,13 +53,14 @@ const DynamicTable: FC<DynamicTableProps> = ({
       )}
       <div className='py-2'>
         <Table
-          columns={displayColumns}
+          columns={cols}
           dataSource={displayDataSource}
           pagination={{ position: ['bottomRight'], pageSize }}
+          bordered
         />
       </div>
     </>
   );
 };
 
-export default memo(DynamicTable);
+export default DynamicTable;

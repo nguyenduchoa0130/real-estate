@@ -1,5 +1,5 @@
 import { Button, Modal } from 'antd';
-import { FC, ReactNode, memo } from 'react';
+import { FC, ReactNode } from 'react';
 
 interface FormModalProps {
   isOpen: boolean;
@@ -45,4 +45,4 @@ const FormModal: FC<FormModalProps> = ({
   );
 };
 
-export default memo(FormModal);
+export default FormModal;

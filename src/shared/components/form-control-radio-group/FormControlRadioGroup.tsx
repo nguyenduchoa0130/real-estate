@@ -1,6 +1,6 @@
 import { Option } from '@interfaces/option.interface';
 import { Form, Radio } from 'antd';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 
 interface FormControlRadioGroupProps {
@@ -43,4 +43,4 @@ const FormControlRadioGroup: FC<FormControlRadioGroupProps> = ({
   );
 };
 
-export default memo(FormControlRadioGroup);
+export default FormControlRadioGroup;

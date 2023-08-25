@@ -1,5 +1,5 @@
 import { Form, Input } from 'antd';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 
 interface FormControlInputProps {
@@ -41,4 +41,4 @@ const FormControlInput: FC<FormControlInputProps> = ({
   );
 };
 
-export default memo(FormControlInput);
+export default FormControlInput;

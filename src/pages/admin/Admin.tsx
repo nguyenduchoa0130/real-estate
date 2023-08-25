@@ -38,9 +38,9 @@ const menuItems: MenuItem[] = [
     icon: <BranchesOutlined />,
   },
   {
-    path: 'addresses',
-    label: 'Addresses',
-    activeKey: 'addresses',
+    path: 'areas',
+    label: 'Areas',
+    activeKey: 'areas',
     icon: <CompassOutlined />,
   },
 ];

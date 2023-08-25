@@ -1,6 +1,6 @@
 import { Option } from '@interfaces/option.interface';
 import { Form, Select } from 'antd';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 
 interface FormControlDropdownProps {
@@ -45,4 +45,4 @@ const FormControlDropdown: FC<FormControlDropdownProps> = ({
   );
 };
 
-export default memo(FormControlDropdown);
+export default FormControlDropdown;
