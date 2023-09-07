@@ -30,9 +30,9 @@ const FormControlInput: FC<FormControlInputProps> = ({
           control={control}
           render={({ field }) =>
             isPassword ? (
-              <Input.Password placeholder={placeholder} {...field} />
+              <Input.Password placeholder={placeholder} {...field} size='large' />
             ) : (
-              <Input placeholder={placeholder} {...field} />
+              <Input placeholder={placeholder} {...field} size='large' />
             )
           }
         />

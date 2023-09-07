@@ -1,3 +1,7 @@
+:root {
+  --header-height: 64px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +28,8 @@ button.ant-btn {
   align-items: center;
   justify-content: center;
 }
+
+/* Global */
 
 .flex {
   display: flex;
@@ -71,6 +77,10 @@ button.ant-btn {
 
 .ai-center {
   align-items: center;
+}
+
+.full-layout-height {
+  height: calc(100vh - var(--header-height));
 }
 
 /* Lib */

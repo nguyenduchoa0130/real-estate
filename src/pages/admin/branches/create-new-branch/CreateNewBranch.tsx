@@ -1,64 +1,99 @@
 import { PlusOutlined } from '@ant-design/icons';
 import FormControlInput from '@components/form-control-input';
 import FormModal from '@components/form-modal';
+import { Branch } from '@interfaces/branch.interface';
+import { useAppDispatch } from '@rootStore';
+import { branchesActions } from '@slices/branches.slice';
+import AlertUtil from '@utils/alert.util';
 import { Button, Form } from 'antd';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-interface FormValue {
-  branchName: string;
-  phoneNumber: string;
-  fax: string;
-}
-
 const CreateNewBranch = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
   const {
     control,
+    handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<FormValue>({
+  } = useForm<Partial<Branch>>({
     defaultValues: {
-      branchName: '',
-      phoneNumber: '',
-      fax: '',
+      duong: '',
+      quan: '',
+      thanh_pho: '',
+      khu_vuc: '',
+      so_dien_thoai: '',
+      so_fax: '',
     },
   });
+
+  const createNewBranch = async (formValue: Partial<Branch>) => {
+    try {
+      await dispatch(branchesActions.createNewBranch(formValue));
+      reset();
+      setIsOpen(false);
+    } catch (error) {
+      AlertUtil.showError(error?.response?.data?.message || error.message);
+    }
+  };
+
   return (
     <>
-      <div className='flex ai-center jc-start'>
-        <Button type='primary' size='large' icon={<PlusOutlined />} onClick={() => setIsOpen(true)}>
-          Create branch
-        </Button>
-        <FormModal
-          isOpen={isOpen}
-          title='Create new branch'
-          onCancel={() => setIsOpen(false)}
-          okBtnText='Create'>
-          <Form layout='vertical'>
-            <FormControlInput
-              label='Branch name'
-              name='branchName'
-              control={control}
-              error={errors.branchName}
-              placeholder='Branch name'
-            />
-            <FormControlInput
-              label='Phone'
-              name='phone'
-              control={control}
-              error={errors.phoneNumber}
-              placeholder='Phone number'
-            />
-            <FormControlInput
-              label='FAX'
-              name='fax'
-              control={control}
-              error={errors.fax}
-              placeholder='Fax'
-            />
-          </Form>
-        </FormModal>
-      </div>
+      <Button type='primary' size='large' icon={<PlusOutlined />} onClick={() => setIsOpen(true)}>
+        Create
+      </Button>
+      <FormModal
+        title='New Branch'
+        isOpen={isOpen}
+        onCancel={() => setIsOpen(false)}
+        onSubmit={handleSubmit(createNewBranch)}
+        okBtnText='Create'>
+        <Form layout='vertical'>
+          <FormControlInput
+            label='Street'
+            control={control}
+            name='duong'
+            placeholder='Enter the street'
+            error={errors.duong}
+          />
+          <FormControlInput
+            label='District'
+            control={control}
+            name='quan'
+            placeholder='Enter the district'
+            error={errors.quan}
+          />
+          <FormControlInput
+            label='City'
+            control={control}
+            name='thanh_pho'
+            placeholder='Enter the city'
+            error={errors.thanh_pho}
+          />
+          <FormControlInput
+            label='Area'
+            control={control}
+            name='khu_vuc'
+            placeholder='Enter the area'
+            error={errors.khu_vuc}
+          />
+          <FormControlInput
+            label='Phone number'
+            control={control}
+            name='so_dien_thoai'
+            placeholder='Enter the phone number'
+            error={errors.so_dien_thoai}
+          />
+          <FormControlInput
+            label='FAX'
+            control={control}
+            name='so_fax'
+            placeholder='Enter the FAX'
+            error={errors.so_fax}
+          />
+        </Form>
+      </FormModal>
     </>
   );
 };

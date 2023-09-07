@@ -1,0 +1,14 @@
+.register-container {
+  background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80');
+  background-size: cover;
+  background-position: center;
+
+  .register-form {
+    width: 40vw;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px 16px 0 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+  }
+}

@@ -8,19 +8,34 @@ const LazyAdmin = lazy(() => import('../pages/admin'));
 const LazyUsers = lazy(() => import('../pages/admin/users'));
 const LazyBranches = lazy(() => import('../pages/admin/branches'));
 const LazyDashboard = lazy(() => import('../pages/admin/dashboard'));
-const LazyAreas = lazy(() => import('../pages/admin/areas'));
 // House For Sales
 const LazyHouseForSales = lazy(() => import('../pages/house-for-sales'));
 // House For Rent
 const LazyHouseForRent = lazy(() => import('../pages/house-for-rent'));
-// Login or Register
-const LazyLoginOrRegister = lazy(() => import('../pages/login-or-register'));
+// Auth
+const LazyLogin = lazy(() => import('../pages/login'));
+const LazyRegister = lazy(() => import('../pages/register'));
+const LazyForgotPassword = lazy(() => import('../pages/forgot-password'));
+// Profile
+const LazyProfile = lazy(() => import('../pages/profile'));
 
 const AppRoutes = () => {
   const routes = useRoutes([
     {
-      path: '/login-or-register',
-      element: <SuspenseWrapper element={<LazyLoginOrRegister />} />,
+      path: '/profile',
+      element: <SuspenseWrapper element={<LazyProfile />} />,
+    },
+    {
+      path: '/login',
+      element: <SuspenseWrapper element={<LazyLogin />} />,
+    },
+    {
+      path: '/register',
+      element: <SuspenseWrapper element={<LazyRegister />} />,
+    },
+    {
+      path: '/forgot-password',
+      element: <SuspenseWrapper element={<LazyForgotPassword />} />,
     },
     {
       path: '/for-sales',
@@ -34,10 +49,6 @@ const AppRoutes = () => {
       path: '/admin',
       element: <SuspenseWrapper element={<LazyAdmin />} />,
       children: [
-        {
-          path: 'areas',
-          element: <SuspenseWrapper element={<LazyAreas />} />,
-        },
         {
           path: 'users',
           element: <SuspenseWrapper element={<LazyUsers />} />,

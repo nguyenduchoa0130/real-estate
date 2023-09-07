@@ -1,11 +1,22 @@
+import { LoginPayload, User } from '@interfaces/user.interface';
 import axiosClient from '@utils/axios-client.util';
 
 const UserService = {
-  register: async () => {
+  register: async (payload: Partial<User>): Promise<User> => {
     try {
       const {
         data: { value },
-      } = await axiosClient.post('/api/users');
+      } = await axiosClient.post('/api/users/register', payload);
+      return value;
+    } catch (error) {
+      throw error;
+    }
+  },
+  login: async (payload: LoginPayload): Promise<User> => {
+    try {
+      const {
+        data: { value },
+      } = await axiosClient.post('/api/users/login', payload);
       return value;
     } catch (error) {
       throw error;

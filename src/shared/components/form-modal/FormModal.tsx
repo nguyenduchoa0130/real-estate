@@ -33,10 +33,10 @@ const FormModal: FC<FormModalProps> = ({
         {children}
         <hr />
         <div className='flex ai-center jc-between'>
-          <Button htmlType='button' onClick={onCancel}>
+          <Button htmlType='button' onClick={onCancel} size='large'>
             {cancelBtnText}
           </Button>
-          <Button type='primary' htmlType='submit' onClick={onSubmit}>
+          <Button type='primary' htmlType='submit' onClick={onSubmit} size='large'>
             {okBtnText}
           </Button>
         </div>

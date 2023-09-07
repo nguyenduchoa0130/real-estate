@@ -37,6 +37,7 @@ const FormControlDropdown: FC<FormControlDropdownProps> = ({
               placeholder={placeholder}
               options={options}
               showSearch={isShowSearch}
+              size='large'
             />
           )}
         />

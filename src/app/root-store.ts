@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { branchesReducer } from '@slices/branches.slice';
+import { useDispatch } from 'react-redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { shareReducer } from './../shared/stores/slices/share.slice';
-import { addressesReducer } from '@slices/addresses.slice';
-import { useDispatch } from 'react-redux';
 
 const persistConfig = {
   key: 'root',
@@ -12,7 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   share: shareReducer,
-  addresses: addressesReducer,
+  branches: branchesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

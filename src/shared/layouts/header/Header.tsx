@@ -1,7 +1,19 @@
-import { CalendarOutlined, DollarOutlined, HomeOutlined } from '@ant-design/icons';
-import { Button, Menu, MenuProps } from 'antd';
-import { memo, useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import {
+  CalendarOutlined,
+  DollarOutlined,
+  DownOutlined,
+  HomeOutlined,
+  LogoutOutlined,
+  ProfileOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import { useAppDispatch } from '@rootStore';
+import { shareSelectors } from '@selectors/share.selectors';
+import { shareActions } from '@slices/share.slice';
+import { Button, Divider, Dropdown, Menu, MenuProps, Space } from 'antd';
+import { memo, useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const menuItems: MenuProps['items'] = [
@@ -25,6 +37,37 @@ const menuItems: MenuProps['items'] = [
 const Header = () => {
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState<string>(null);
+  const currentUser = useSelector(shareSelectors.selectCurrentUser);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const logout = (): void => {
+    dispatch(shareActions.logout());
+    return navigate('/');
+  };
+
+  const userMenuItems = useMemo(() => {
+    return [
+      {
+        key: 'profile',
+        label: (
+          <NavLink to='/profile'>
+            <Button type='link' icon={<ProfileOutlined />}>
+              My profile
+            </Button>
+          </NavLink>
+        ),
+      },
+      {
+        key: 'logout',
+        label: (
+          <Button type='link' icon={<LogoutOutlined />} onClick={logout}>
+            Logout
+          </Button>
+        ),
+      },
+    ];
+  }, []);
 
   useEffect(() => {
     setCurrentPage(location.pathname);
@@ -44,11 +87,26 @@ const Header = () => {
             selectedKeys={[currentPage]}
           />
         </nav>
-        <NavLink to='/login-or-register'>
-          <Button size='large' type='dashed'>
-            Login or Register
-          </Button>
-        </NavLink>
+        {currentUser ? (
+          <Dropdown menu={{ items: userMenuItems }}>
+            <Button icon={<UserOutlined />} size='large'>
+              <DownOutlined />
+            </Button>
+          </Dropdown>
+        ) : (
+          <Space direction='horizontal' split={<Divider type='vertical' />}>
+            <NavLink to='/login'>
+              <Button size='large' type='dashed'>
+                Login
+              </Button>
+            </NavLink>
+            <NavLink to='/register'>
+              <Button size='large' type='primary'>
+                Register
+              </Button>
+            </NavLink>
+          </Space>
+        )}
       </div>
     </>
   );

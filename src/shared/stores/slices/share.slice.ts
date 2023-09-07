@@ -21,8 +21,14 @@ const shareSlice = createSlice({
     hideLoading: (state) => {
       state.isLoading = false;
     },
+    logout: (state) => {
+      state.currentUser = null;
+    },
   },
+  extraReducers: (builder) => {},
 });
 
 export const shareReducer = shareSlice.reducer;
-export const shareActions = shareSlice.actions;
+export const shareActions = {
+  ...shareSlice.actions,
+};

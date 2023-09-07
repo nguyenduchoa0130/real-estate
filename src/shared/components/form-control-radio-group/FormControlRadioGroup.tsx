@@ -29,7 +29,7 @@ const FormControlRadioGroup: FC<FormControlRadioGroupProps> = ({
           control={control}
           rules={rules}
           render={({ field }) => (
-            <Radio.Group {...field}>
+            <Radio.Group {...field} size='large'>
               {options.map((opt, idx) => (
                 <Radio key={`${name}-option-${idx}`} value={opt.value}>
                   {opt.label}

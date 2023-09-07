@@ -37,12 +37,6 @@ const menuItems: MenuItem[] = [
     activeKey: 'branches',
     icon: <BranchesOutlined />,
   },
-  {
-    path: 'areas',
-    label: 'Areas',
-    activeKey: 'areas',
-    icon: <CompassOutlined />,
-  },
 ];
 
 const Admin = () => {
