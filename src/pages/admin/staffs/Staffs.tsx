@@ -1,17 +1,17 @@
 import CreateNewStaff from './create-new-staff';
-import ListUsers from './list-users';
+import ListStaffs from './list-staffs';
 
-const Users = () => {
+const Staffs = () => {
   return (
     <>
       <div className='py-1'>
         <CreateNewStaff />
       </div>
       <div className='py-1'>
-        <ListUsers />
+        <ListStaffs />
       </div>
     </>
   );
 };
 
-export default Users;
+export default Staffs;

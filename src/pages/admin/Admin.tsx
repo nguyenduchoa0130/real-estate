@@ -1,6 +1,5 @@
 import {
   BranchesOutlined,
-  CompassOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
@@ -26,9 +25,9 @@ const menuItems: MenuItem[] = [
     icon: <PieChartOutlined />,
   },
   {
-    path: 'users',
-    label: 'Users',
-    activeKey: 'users',
+    path: 'staffs',
+    label: 'Staffs',
+    activeKey: 'staffs',
     icon: <UserOutlined />,
   },
   {

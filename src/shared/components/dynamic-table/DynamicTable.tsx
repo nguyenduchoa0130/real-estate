@@ -9,6 +9,7 @@ interface DynamicTableProps {
   isShowSearch?: boolean;
   searchBy?: string[];
   pageSize?: number;
+  rowKey?: string;
 }
 
 const DynamicTable: FC<DynamicTableProps> = ({
@@ -17,6 +18,7 @@ const DynamicTable: FC<DynamicTableProps> = ({
   searchBy = [],
   dataSource = [],
   isShowSearch = false,
+  rowKey = 'id',
 }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const debouncedSearchValue = useDebounce(searchValue);
@@ -53,6 +55,7 @@ const DynamicTable: FC<DynamicTableProps> = ({
       )}
       <div className='py-2'>
         <Table
+          rowKey={rowKey}
           columns={cols}
           dataSource={displayDataSource}
           pagination={{ position: ['bottomRight'], pageSize }}

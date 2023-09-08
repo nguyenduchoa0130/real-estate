@@ -11,7 +11,7 @@ interface FormControlDropdownProps {
   label?: string;
   placeholder?: string;
   isShowSearch?: boolean;
-  options: Option<string>[];
+  options: Option<any>[];
 }
 
 const FormControlDropdown: FC<FormControlDropdownProps> = ({

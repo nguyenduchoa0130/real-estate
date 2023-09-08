@@ -17,6 +17,11 @@ const ListBranches = () => {
         dataIndex: 'ma_chi_nhanh',
       },
       {
+        title: 'Name',
+        key: 'ten_chi_nhanh',
+        dataIndex: 'ten_chi_nhanh',
+      },
+      {
         title: 'Street',
         key: 'duong',
         dataIndex: 'duong',
@@ -63,7 +68,7 @@ const ListBranches = () => {
 
   return (
     <>
-      <DynamicTable cols={cols} dataSource={listBranches} />
+      <DynamicTable cols={cols} dataSource={listBranches} rowKey='ma_chi_nhanh' />
     </>
   );
 };

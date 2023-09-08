@@ -6,4 +6,5 @@ export interface Branch {
   khu_vuc?: string;
   so_dien_thoai?: string;
   so_fax?: string;
+  ten_chi_nhanh?: string;
 }

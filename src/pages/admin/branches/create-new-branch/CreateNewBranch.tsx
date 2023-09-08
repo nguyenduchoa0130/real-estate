@@ -25,6 +25,7 @@ const CreateNewBranch = () => {
       khu_vuc: '',
       so_dien_thoai: '',
       so_fax: '',
+      ten_chi_nhanh: '',
     },
   });
 
@@ -50,6 +51,13 @@ const CreateNewBranch = () => {
         onSubmit={handleSubmit(createNewBranch)}
         okBtnText='Create'>
         <Form layout='vertical'>
+          <FormControlInput
+            label='Name'
+            control={control}
+            name='ten_chi_nhanh'
+            placeholder='Enter branch name'
+            error={errors.ten_chi_nhanh}
+          />
           <FormControlInput
             label='Street'
             control={control}

@@ -5,7 +5,7 @@ import Home from '../pages/home';
 
 // Admin Module
 const LazyAdmin = lazy(() => import('../pages/admin'));
-const LazyUsers = lazy(() => import('../pages/admin/users'));
+const LazyStaffs = lazy(() => import('../pages/admin/staffs'));
 const LazyBranches = lazy(() => import('../pages/admin/branches'));
 const LazyDashboard = lazy(() => import('../pages/admin/dashboard'));
 // House For Sales
@@ -50,8 +50,8 @@ const AppRoutes = () => {
       element: <SuspenseWrapper element={<LazyAdmin />} />,
       children: [
         {
-          path: 'users',
-          element: <SuspenseWrapper element={<LazyUsers />} />,
+          path: 'staffs',
+          element: <SuspenseWrapper element={<LazyStaffs />} />,
         },
         {
           path: 'branches',
