@@ -1,8 +1,11 @@
 import {
   BranchesOutlined,
+  CrownOutlined,
+  HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
+  TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, Typography } from 'antd';
@@ -31,10 +34,28 @@ const menuItems: MenuItem[] = [
     icon: <UserOutlined />,
   },
   {
+    path: 'landlords',
+    label: 'Landlords',
+    activeKey: 'landlords',
+    icon: <CrownOutlined />,
+  },
+  {
+    path: 'customers',
+    label: 'Customers',
+    activeKey: 'customers',
+    icon: <TeamOutlined />,
+  },
+  {
     path: 'branches',
     label: 'Branches',
     activeKey: 'branches',
     icon: <BranchesOutlined />,
+  },
+  {
+    path: 'houses',
+    label: 'Houses',
+    activeKey: 'houses',
+    icon: <HomeOutlined />,
   },
 ];
 

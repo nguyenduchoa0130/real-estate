@@ -22,21 +22,6 @@ const ListBranches = () => {
         dataIndex: 'ten_chi_nhanh',
       },
       {
-        title: 'Street',
-        key: 'duong',
-        dataIndex: 'duong',
-      },
-      {
-        title: 'District',
-        key: 'quan',
-        dataIndex: 'quan',
-      },
-      {
-        title: 'City',
-        key: 'thanh_pho',
-        dataIndex: 'thanh_pho',
-      },
-      {
         title: 'Areas',
         key: 'khu_vuc',
         dataIndex: 'khu_vuc',
@@ -50,6 +35,21 @@ const ListBranches = () => {
         title: 'FAX',
         key: 'so_fax',
         dataIndex: 'so_fax',
+      },
+      {
+        title: 'District',
+        key: 'quan',
+        dataIndex: 'quan',
+      },
+      {
+        title: 'City',
+        key: 'thanh_pho',
+        dataIndex: 'thanh_pho',
+      },
+      {
+        title: 'Street',
+        key: 'duong',
+        dataIndex: 'duong',
       },
     ];
   }, []);

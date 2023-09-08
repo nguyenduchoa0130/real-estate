@@ -82,7 +82,7 @@ const CreateNewStaff = () => {
           icon={<UserAddOutlined />}
           size='large'
           onClick={() => setIsOpen(true)}>
-          Create new staff
+          Create
         </Button>
       </div>
       <div className='pt-2'></div>

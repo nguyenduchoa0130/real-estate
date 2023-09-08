@@ -2,24 +2,23 @@ import DynamicTable from '@components/dynamic-table';
 import { useAppDispatch } from '@rootStore';
 import { usersSelectors } from '@selectors/users.selectors';
 import { usersActions } from '@slices/users.slice';
-import moment from 'moment';
 import { useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-const ListStaffs = () => {
-  const listStaffs = useSelector(usersSelectors.selectListStaffs);
+const ListLandlords = () => {
+  const listLandlords = useSelector(usersSelectors.selectListLandlords);
   const dispatch = useAppDispatch();
   const cols = useMemo(() => {
     return [
       {
         title: 'ID',
-        key: 'ma_nhan_vien',
-        dataIndex: 'ma_nhan_vien',
+        key: 'ma_chu_nha',
+        dataIndex: 'ma_chu_nha',
       },
       {
         title: 'Name',
-        key: 'ten_nhan_vien',
-        dataIndex: 'ten_nhan_vien',
+        key: 'ten_chu_nha',
+        dataIndex: 'ten_chu_nha',
       },
       {
         title: 'Email',
@@ -32,33 +31,21 @@ const ListStaffs = () => {
         dataIndex: 'so_dien_thoai',
       },
       {
-        title: 'Gender',
-        key: 'gioi_tinh',
-        dataIndex: 'gioi_tinh',
-      },
-      {
-        title: 'Birthday',
-        key: 'ngay_sinh',
-        dataIndex: 'ngay_sinh',
-        render: (val) => val && moment(val).format('MM/DD/YYYY'),
-      },
-      {
-        title: 'Salary',
-        key: 'luong',
-        dataIndex: 'luong',
+        title: 'Address',
+        key: 'dia_chi',
+        dataIndex: 'dia_chi',
       },
     ];
   }, []);
 
   useEffect(() => {
-    dispatch(usersActions.getAllStaffs());
+    dispatch(usersActions.getAllLandlords());
   }, []);
-
   return (
     <>
-      <DynamicTable cols={cols} dataSource={listStaffs} rowKey='ma_nhan_vien' />
+      <DynamicTable cols={cols} dataSource={listLandlords} rowKey='ma_chu_nha' />
     </>
   );
 };
 
-export default ListStaffs;
+export default ListLandlords;

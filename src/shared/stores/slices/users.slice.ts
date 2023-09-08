@@ -1,14 +1,18 @@
+import { Landlord } from '@interfaces/landlord.interface';
 import { Staff } from '@interfaces/staff.interface';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import LandLordService from '@services/landlord.service';
 import StaffService from '@services/staff.service';
 import { shareActions } from './share.slice';
 
 interface UsersState {
   listStaffs?: Staff[];
+  listLandlords?: Landlord[];
 }
 
 const initialState: UsersState = {
   listStaffs: [],
+  listLandlords: [],
 };
 
 const createNewStaff = createAsyncThunk(
@@ -38,6 +42,33 @@ const getAllStaffs = createAsyncThunk('staff/getAllStaffs', async (_, { dispatch
   }
 });
 
+const createNewLandlord = createAsyncThunk(
+  'staff/createNewLandlord',
+  async (payload: Landlord, { dispatch }) => {
+    try {
+      dispatch(shareActions.showLoading());
+      const landlord = await LandLordService.createNewLandlord(payload);
+      return landlord;
+    } catch (error) {
+      throw error;
+    } finally {
+      dispatch(shareActions.hideLoading());
+    }
+  },
+);
+
+const getAllLandlords = createAsyncThunk('staff/getAllLandlords', async (_, { dispatch }) => {
+  try {
+    dispatch(shareActions.showLoading());
+    const staffs = await LandLordService.getAllLandlords();
+    return staffs;
+  } catch (error) {
+    throw error;
+  } finally {
+    dispatch(shareActions.hideLoading());
+  }
+});
+
 const usersSlice = createSlice({
   name: 'staff',
   initialState,
@@ -49,6 +80,12 @@ const usersSlice = createSlice({
       })
       .addCase(getAllStaffs.fulfilled, (state, { payload }) => {
         state.listStaffs = payload;
+      })
+      .addCase(createNewLandlord.fulfilled, (state, { payload }) => {
+        state.listLandlords.push(payload);
+      })
+      .addCase(getAllLandlords.fulfilled, (state, { payload }) => {
+        state.listLandlords = payload;
       });
   },
 });
@@ -58,4 +95,6 @@ export const usersActions = {
   ...usersSlice.actions,
   createNewStaff,
   getAllStaffs,
+  createNewLandlord,
+  getAllLandlords,
 };
