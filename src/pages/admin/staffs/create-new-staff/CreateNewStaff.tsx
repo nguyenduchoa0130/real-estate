@@ -82,7 +82,6 @@ const CreateNewStaff = () => {
           Create
         </Button>
       </div>
-      <div className='pt-2'></div>
       <FormModal
         title='New staff'
         isOpen={isOpen}

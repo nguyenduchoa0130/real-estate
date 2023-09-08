@@ -25,6 +25,9 @@ const LazyForgotPassword = lazy(() => import('../pages/forgot-password'));
 // Profile
 const LazyProfile = lazy(() => import('../pages/profile'));
 
+// My Houses
+const LazyMyHouses = lazy(() => import('../pages/my-houses'));
+
 const AppRoutes = () => {
   const routes = useRoutes([
     {
@@ -50,6 +53,10 @@ const AppRoutes = () => {
     {
       path: '/for-rent',
       element: <SuspenseWrapper element={<LazyHouseForRent />} />,
+    },
+    {
+      path: '/my-houses',
+      element: <SuspenseWrapper element={<LazyMyHouses />} />,
     },
     {
       path: '/admin',

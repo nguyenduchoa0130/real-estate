@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from '@slices/auth.slice';
 import { branchesReducer } from '@slices/branches.slice';
+import { housesReducer } from '@slices/houses.slice';
 import { usersReducer } from '@slices/users.slice';
 import { useDispatch } from 'react-redux';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   branches: branchesReducer,
   users: usersReducer,
   auth: authReducer,
+  houses: housesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

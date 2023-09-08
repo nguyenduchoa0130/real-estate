@@ -3,7 +3,6 @@ import FormControlInput from '@components/form-control-input';
 import { LoginPayload } from '@interfaces/user.interface';
 import { useAppDispatch } from '@rootStore';
 import { authActions } from '@slices/auth.slice';
-import AlertUtil from '@utils/alert.util';
 import { Button, Form, Typography } from 'antd';
 import cx from 'classnames';
 import { useForm } from 'react-hook-form';
