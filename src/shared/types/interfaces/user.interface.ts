@@ -1,18 +1,19 @@
 export interface User {
-  id: number;
-  email: string;
-  firstName: string;
-  lastName: string;
-  birthday: string;
-  gender: string;
-  address: string;
-  phoneNumber: string;
-  role: string;
-  salary: number;
-  branchId: number;
+  MaKH?: number;
+  HoTen?: string;
+  NgaySinh?: string;
+  CMND?: string;
+  DiaChi?: string;
+  MaTK?: string;
+  NgayLap?: string;
+  SoDu?: number;
+  TrangThai?: string;
+  LoaiTK?: string;
+  email?: string;
+  mat_khau?: string;
 }
 
 export interface LoginPayload {
   email: string;
-  password: string;
+  mat_khau: string;
 }

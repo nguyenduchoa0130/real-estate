@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { authReducer } from '@slices/auth.slice';
 import { branchesReducer } from '@slices/branches.slice';
 import { usersReducer } from '@slices/users.slice';
 import { useDispatch } from 'react-redux';
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   share: shareReducer,
   branches: branchesReducer,
   users: usersReducer,
+  auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

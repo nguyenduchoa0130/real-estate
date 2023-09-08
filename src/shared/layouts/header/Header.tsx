@@ -5,6 +5,7 @@ import {
   HomeOutlined,
   LogoutOutlined,
   ProfileOutlined,
+  SettingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { useAppDispatch } from '@rootStore';
@@ -88,11 +89,30 @@ const Header = () => {
           />
         </nav>
         {currentUser ? (
-          <Dropdown menu={{ items: userMenuItems }}>
-            <Button icon={<UserOutlined />} size='large'>
-              <DownOutlined />
-            </Button>
-          </Dropdown>
+          <Space>
+            {currentUser.LoaiTK === 'Nhan vien' && (
+              <NavLink to='/admin'>
+                <Button type='primary' size='large' icon={<SettingOutlined />}>
+                  Admin
+                </Button>
+              </NavLink>
+            )}
+            {currentUser.LoaiTK === 'Chu nha' && (
+              <NavLink to='/my-houses'>
+                <Button type='primary' size='large' icon={<HomeOutlined />}>
+                  My houses
+                </Button>
+              </NavLink>
+            )}
+            <Dropdown menu={{ items: userMenuItems }}>
+              <Button icon={<UserOutlined />} size='large'>
+                <span>
+                  Hi, {currentUser.HoTen || currentUser.ten_chu_nha || currentUser.ten_nhan_vien}
+                </span>
+                <DownOutlined />
+              </Button>
+            </Dropdown>
+          </Space>
         ) : (
           <Space direction='horizontal' split={<Divider type='vertical' />}>
             <NavLink to='/login'>

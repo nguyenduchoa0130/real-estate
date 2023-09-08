@@ -5,4 +5,5 @@ export interface Landlord {
   so_dien_thoai?: string;
   email?: string;
   mat_khau?: string;
+  LoaiTK?: string;
 }

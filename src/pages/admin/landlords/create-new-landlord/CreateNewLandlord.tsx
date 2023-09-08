@@ -5,7 +5,6 @@ import { Landlord } from '@interfaces/landlord.interface';
 import { Staff } from '@interfaces/staff.interface';
 import { useAppDispatch } from '@rootStore';
 import { usersActions } from '@slices/users.slice';
-import AlertUtil from '@utils/alert.util';
 import { Button, Form } from 'antd';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -31,12 +30,10 @@ const CreateNewLandlord = () => {
   });
 
   const handleCreateStaff = async (formValue: Staff) => {
-    try {
-      await dispatch(usersActions.createNewLandlord(formValue));
+    const res = await dispatch(usersActions.createNewLandlord(formValue));
+    if (res.meta.requestStatus === 'fulfilled') {
       reset(defaultFormValue);
       setIsOpen(false);
-    } catch (error) {
-      AlertUtil.showError(error?.response?.data?.message || error.message);
     }
   };
 

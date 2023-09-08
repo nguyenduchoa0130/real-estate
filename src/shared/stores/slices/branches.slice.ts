@@ -2,6 +2,7 @@ import { Branch } from '@interfaces/branch.interface';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import BranchesService from '@services/branches.service';
 import { shareActions } from './share.slice';
+import AlertUtil from '@utils/alert.util';
 
 interface BranchesState {
   listBranches?: Branch[];
@@ -19,7 +20,8 @@ const createNewBranch = createAsyncThunk(
       const branch = await BranchesService.createNewBranch(payload);
       return branch;
     } catch (error) {
-      throw error;
+      AlertUtil.showError(error?.response?.data?.message || error.message);
+      return Promise.reject();
     } finally {
       dispatch(shareActions.hideLoading());
     }
@@ -32,7 +34,8 @@ const getAllBranches = createAsyncThunk('branches/getAllBranches', async (_, { d
     const branches = await BranchesService.getAllBranches();
     return branches;
   } catch (error) {
-    throw error;
+    AlertUtil.showError(error?.response?.data?.message || error.message);
+    return Promise.reject();
   } finally {
     dispatch(shareActions.hideLoading());
   }

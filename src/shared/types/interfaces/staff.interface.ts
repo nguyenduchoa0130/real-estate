@@ -9,4 +9,5 @@ export interface Staff {
   ma_chi_nhanh?: number;
   email?: string;
   mat_khau?: string;
+  LoaiTK?: string;
 }

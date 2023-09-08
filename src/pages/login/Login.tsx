@@ -2,6 +2,8 @@ import { KeyOutlined, UserAddOutlined } from '@ant-design/icons';
 import FormControlInput from '@components/form-control-input';
 import { LoginPayload } from '@interfaces/user.interface';
 import { useAppDispatch } from '@rootStore';
+import { authActions } from '@slices/auth.slice';
+import AlertUtil from '@utils/alert.util';
 import { Button, Form, Typography } from 'antd';
 import cx from 'classnames';
 import { useForm } from 'react-hook-form';
@@ -16,13 +18,18 @@ const Login = () => {
   } = useForm<LoginPayload>({
     defaultValues: {
       email: '',
-      password: '',
+      mat_khau: '',
     },
   });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = async (formValue: LoginPayload) => {};
+  const handleLogin = async (formValue: LoginPayload) => {
+    const res = await dispatch(authActions.login(formValue));
+    if (res.meta.requestStatus === 'fulfilled') {
+      navigate('/');
+    }
+  };
   return (
     <>
       <div className={cx('flex ai-center jc-center h-100', styles['login-container'])}>
@@ -43,9 +50,9 @@ const Login = () => {
             <FormControlInput
               isPassword
               label='Password'
-              name='password'
+              name='mat_khau'
               control={control}
-              error={errors.password}
+              error={errors.mat_khau}
               placeholder='Enter your password'
               rules={{
                 required: 'Required',
@@ -68,7 +75,7 @@ const Login = () => {
             <hr />
             <Form.Item>
               <div className='flex ai-center jc-center'>
-                <Button type='primary' htmlType='submit' className='w-100'>
+                <Button type='primary' htmlType='submit' className='w-100' size='large'>
                   Submit
                 </Button>
               </div>

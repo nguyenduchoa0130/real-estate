@@ -4,7 +4,6 @@ import FormModal from '@components/form-modal';
 import { Branch } from '@interfaces/branch.interface';
 import { useAppDispatch } from '@rootStore';
 import { branchesActions } from '@slices/branches.slice';
-import AlertUtil from '@utils/alert.util';
 import { Button, Form } from 'antd';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -30,12 +29,10 @@ const CreateNewBranch = () => {
   });
 
   const createNewBranch = async (formValue: Partial<Branch>) => {
-    try {
-      await dispatch(branchesActions.createNewBranch(formValue));
+    const res = await dispatch(branchesActions.createNewBranch(formValue));
+    if (res.meta.requestStatus === 'fulfilled') {
       reset();
       setIsOpen(false);
-    } catch (error) {
-      AlertUtil.showError(error?.response?.data?.message || error.message);
     }
   };
 

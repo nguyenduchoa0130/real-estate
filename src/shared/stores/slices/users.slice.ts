@@ -3,6 +3,7 @@ import { Staff } from '@interfaces/staff.interface';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import LandLordService from '@services/landlord.service';
 import StaffService from '@services/staff.service';
+import AlertUtil from '@utils/alert.util';
 import { shareActions } from './share.slice';
 
 interface UsersState {
@@ -36,7 +37,8 @@ const getAllStaffs = createAsyncThunk('staff/getAllStaffs', async (_, { dispatch
     const staffs = await StaffService.getAllStaffs();
     return staffs;
   } catch (error) {
-    throw error;
+    AlertUtil.showError(error?.response?.data?.message || error.message);
+    return Promise.reject();
   } finally {
     dispatch(shareActions.hideLoading());
   }
@@ -50,7 +52,8 @@ const createNewLandlord = createAsyncThunk(
       const landlord = await LandLordService.createNewLandlord(payload);
       return landlord;
     } catch (error) {
-      throw error;
+      AlertUtil.showError(error?.response?.data?.message || error.message);
+      return Promise.reject();
     } finally {
       dispatch(shareActions.hideLoading());
     }
@@ -63,7 +66,8 @@ const getAllLandlords = createAsyncThunk('staff/getAllLandlords', async (_, { di
     const staffs = await LandLordService.getAllLandlords();
     return staffs;
   } catch (error) {
-    throw error;
+    AlertUtil.showError(error?.response?.data?.message || error.message);
+    return Promise.reject();
   } finally {
     dispatch(shareActions.hideLoading());
   }

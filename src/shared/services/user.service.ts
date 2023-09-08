@@ -6,7 +6,7 @@ const UserService = {
     try {
       const {
         data: { value },
-      } = await axiosClient.post('/api/users/register', payload);
+      } = await axiosClient.post('/api/customers/register', payload);
       return value;
     } catch (error) {
       throw error;
@@ -16,7 +16,7 @@ const UserService = {
     try {
       const {
         data: { value },
-      } = await axiosClient.post('/api/users/login', payload);
+      } = await axiosClient.post('/api/customers/login', payload);
       return value;
     } catch (error) {
       throw error;

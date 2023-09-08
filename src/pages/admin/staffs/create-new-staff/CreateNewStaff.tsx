@@ -10,7 +10,6 @@ import { useAppDispatch } from '@rootStore';
 import { branchesSelectors } from '@selectors/branches.selectors';
 import { branchesActions } from '@slices/branches.slice';
 import { usersActions } from '@slices/users.slice';
-import AlertUtil from '@utils/alert.util';
 import { Button, Form } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -53,13 +52,11 @@ const CreateNewStaff = () => {
   });
 
   const handleCreateStaff = async (formValue: Staff) => {
-    try {
-      formValue.ngay_sinh = (formValue.ngay_sinh as any).$d.toJSON();
-      await dispatch(usersActions.createNewStaff(formValue));
+    formValue.ngay_sinh = (formValue.ngay_sinh as any).$d.toJSON();
+    const res = await dispatch(usersActions.createNewStaff(formValue));
+    if (res.meta.requestStatus === 'fulfilled') {
       reset(defaultFormValue);
       setIsOpen(false);
-    } catch (error) {
-      AlertUtil.showError(error?.response?.data?.message || error.message);
     }
   };
 

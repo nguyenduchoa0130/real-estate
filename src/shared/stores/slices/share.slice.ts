@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { User } from '../../types/interfaces/user.interface';
 
 export interface ShareState {
   isLoading?: boolean;
-  currentUser?: User;
+  currentUser?: any;
 }
 
 const initialState: ShareState = {
@@ -24,8 +23,10 @@ const shareSlice = createSlice({
     logout: (state) => {
       state.currentUser = null;
     },
+    setUser: (state, { payload }) => {
+      state.currentUser = payload;
+    },
   },
-  extraReducers: (builder) => {},
 });
 
 export const shareReducer = shareSlice.reducer;

@@ -1,41 +1,50 @@
+import FormControlDatePicker from '@components/form-control-date-picker';
 import FormControlInput from '@components/form-control-input';
 import { useAppDispatch } from '@rootStore';
-import { shareActions } from '@slices/share.slice';
+import AlertUtil from '@utils/alert.util';
 import { Button, Form, Typography } from 'antd';
 import cx from 'classnames';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { authActions } from '../../shared/stores/slices/auth.slice';
 import styles from './styles.module.scss';
 
 interface FormValue {
   email: string;
-  password: string;
-  passwordConfirm: string;
+  mat_khau: string;
+  xac_nhan_mat_khau: string;
+  HoTen: string;
+  NgaySinh: any;
+  CMND: string;
+  DiaChi: string;
 }
 
 const Register = () => {
   const {
-    watch,
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValue>({
     defaultValues: {
       email: '',
-      password: '',
-      passwordConfirm: '',
+      mat_khau: '',
+      xac_nhan_mat_khau: '',
+      HoTen: '',
+      NgaySinh: null,
+      CMND: '',
+      DiaChi: '',
     },
   });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleRegister = async (formValue: FormValue) => {
-    delete formValue.passwordConfirm;
-    console.log('form value', formValue);
-    // const isSuccess = await dispatch(shareActions.createUser(formValue));
-    // if (isSuccess.meta.requestStatus === 'fulfilled') {
-    //   return navigate('/', {});
-    // }
+    try {
+      delete formValue.xac_nhan_mat_khau;
+      formValue.NgaySinh = formValue.NgaySinh.$d.toJSON();
+      await dispatch(authActions.register(formValue));
+      return navigate('/');
+    } catch (error) {}
   };
   return (
     <>
@@ -51,52 +60,50 @@ const Register = () => {
               control={control}
               error={errors.email}
               placeholder='Email'
-              rules={{
-                required: 'Required',
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: 'Invalid email',
-                },
-              }}
             />
             <FormControlInput
               isPassword
               label='Password'
-              name='password'
+              name='mat_khau'
               control={control}
-              error={errors.password}
+              error={errors.mat_khau}
               placeholder='Password'
-              rules={{
-                required: 'Required',
-                minLength: {
-                  value: 6,
-                  message: 'The password must have at least 6 characters',
-                },
-              }}
             />
             <FormControlInput
-              isPassword
-              label='Password confirmation'
-              name='passwordConfirm'
+              label='Full name'
+              name='HoTen'
               control={control}
-              error={errors.passwordConfirm}
-              placeholder='Password confirmation'
-              rules={{
-                required: 'Required',
-                validate: (curr) => {
-                  if (watch('password') !== curr) {
-                    return 'Password confirmation is not match';
-                  }
-                },
-              }}
+              error={errors.HoTen}
+              placeholder='Enter your name'
+            />
+            <FormControlInput
+              label='CMND'
+              name='CMND'
+              control={control}
+              error={errors.CMND}
+              placeholder='Enter your CMND'
+            />
+            <FormControlInput
+              label='Address'
+              name='DiaChi'
+              control={control}
+              error={errors.DiaChi}
+              placeholder='Enter your address'
+            />
+            <FormControlDatePicker
+              label='Birthday'
+              name='NgaySinh'
+              control={control}
+              error={errors.NgaySinh}
+              placeholder='Choose your birthday'
             />
             <hr />
             <Form.Item>
               <div className='flex ai-center jc-between'>
                 <NavLink to='/login'>
-                  <Button>Back to login</Button>
+                  <Button size='large'>Back to login</Button>
                 </NavLink>
-                <Button type='primary' htmlType='submit'>
+                <Button type='primary' htmlType='submit' size='large'>
                   Submit
                 </Button>
               </div>

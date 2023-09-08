@@ -30,7 +30,7 @@ const FormControlDatePicker: FC<FormControlDatePickerProps> = ({
             <DatePicker
               {...field}
               placeholder={placeholder}
-              format='MM-DD-YYYY'
+              format='MM/DD/YYYY'
               className='w-100'
               size='large'
             />
